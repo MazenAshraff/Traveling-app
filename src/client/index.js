@@ -4,8 +4,6 @@ const restrictDates = () => {
     const dateElem = document.getElementById('startdate');
     dateElem.setAttribute('min', modifyCurDate());
     dateElem.setAttribute('max', getSomeDate(15));
-    getOffset();
-
 };
 restrictDates();
 

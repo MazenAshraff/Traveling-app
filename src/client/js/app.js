@@ -50,12 +50,27 @@ const getOffset = () => {
     for (let i = 0; i < 16; i++) {
         dates[getSomeDate(i)] = i;
     }
-    console.log(dates);
+    return dates;
+}
+const isValid = (date) => {
+    const dateArray = date.split('-');
+    const cur_date = modifyCurDate().split('-');
+    const max_date = getSomeDate(15).split('-');
+    for (let i = 0; i < 3; i++) {
+        if (parseInt(dateArray[i]) > parseInt(max_date[i]) || parseInt(dateArray[i]) < parseInt(cur_date[i]))
+            return false;
+    }
+    return true;
 }
 
 const test = async() => {
     const locValue = document.getElementById('location').value;
     const date = document.getElementById("startdate").value;
+    console.log(date);
+    if (!isValid(date)) {
+        alert('Please Enter a valid date');
+        return null;
+    }
     const offset = getOffset();
     postData('http://localhost:8000/location', { location: `${locValue}`, date: offset[date] });
 }
