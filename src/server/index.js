@@ -77,4 +77,4 @@ app.post('/location', async(req, res) => {
     }
 });
 
-export { isEmpty }
+exports.isEmpty = isEmpty;
