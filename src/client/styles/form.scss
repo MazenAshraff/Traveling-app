@@ -69,3 +69,9 @@ sans-serif;
         cursor: pointer;
     }
 }
+
+@media(max-width:500px) {
+    .formdiv {
+        margin-right: 2vw;
+    }
+}
