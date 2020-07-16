@@ -43,4 +43,16 @@ footer {
     padding: 0.5vw;
 }
 
-$fontSize:2em;
+@media (max-width: 500px) {
+    .title {
+        font-size: 1.2em;
+    }
+    body {
+        height: 100%;
+        grid-template-areas: "hd" "in" "cont" "ft";
+        grid-template-columns: 100vw;
+        grid-template-rows: 10vh 60vh 90vh 10vh;
+        gap: 5vh;
+        font-size: 0.8em;
+    }
+}
