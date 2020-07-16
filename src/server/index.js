@@ -4,12 +4,14 @@ const bodyparser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const fetch = require('node-fetch');
-app.use(cors());
 const dotenv = require('dotenv');
+const isEmpty = require('./functions.js').isEmpty;
 dotenv.config();
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(express.static('dist'));
+app.use(cors());
+
 
 const port = 8000;
 const listening = () => console.log(`Running on localhost:${port}`);
@@ -22,13 +24,7 @@ const weatherURL = 'https://api.weatherbit.io/v2.0/forecast/daily?'
 const pixaURL = `https://pixabay.com/api/?key=${pixabay_key}&q=`
 
 
-const isEmpty = (elem) => {
-    if (elem.total == 0)
-        return true;
-    else
-        return false;
 
-}
 app.post('/location', async(req, res) => {
     const loc = req.body['location'];
     const day = req.body['date'];

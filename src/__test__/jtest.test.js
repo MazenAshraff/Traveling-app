@@ -1,6 +1,5 @@
 import { isGreaterEqual } from '../client/js/app.js'
-import { isEmpty } from '../server/index.js'
-
+const isEmpty = require('../server/functions.js').isEmpty;
 describe('Client test', () => {
     test('check isGreaterEqual function working properly ',
         () => {
