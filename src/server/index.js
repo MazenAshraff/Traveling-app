@@ -75,4 +75,6 @@ app.post('/location', async(req, res) => {
     } catch (e) {
         console.log('This is an  error', e);
     }
-})
+});
+
+export { isEmpty }
