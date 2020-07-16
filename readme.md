@@ -33,3 +33,6 @@ The App allows you to:
 * See how many days you are spending in your trip
 * See the maximum, minimum tempreature and chance of rain on the day of your arrival
 * See a popular picture of your destination 
+
+## Licences
+The background I used for the project was provided by [Mohammad Abdul Mohaiman](https://codepen.io/mohaiman)
