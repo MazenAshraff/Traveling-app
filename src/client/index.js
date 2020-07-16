@@ -2,8 +2,9 @@ import { postData, updateUI, getSomeDate, modifyCurDate, getOffset, returndateli
 import './styles/styles.scss';
 import './styles/form.scss';
 import './styles/background.scss';
-import './styles/output.scss'
-document.getElementById('submit').addEventListener('click', test);
+import './styles/output.scss';
+returndatelimiter();
+document.getElementById('submit').addEventListener('click', updateUI);
 const restrictDates = () => {
     const dateElem = document.getElementById('startdate');
     dateElem.setAttribute('min', modifyCurDate());

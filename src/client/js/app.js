@@ -118,11 +118,9 @@ const updateUI = async() => { //updating the UI using information retrieved from
     console.log('done');
 }
 
-const returndatelimiter = (() => {
-        document.getElementById('startdate').addEventListener('input', (e) => {
-            document.getElementById('returndate').setAttribute('min', document.getElementById('startdate').value);
-        });
-    }
-
-)();
+const returndatelimiter = () => {
+    document.getElementById('startdate').addEventListener('input', (e) => {
+        document.getElementById('returndate').setAttribute('min', document.getElementById('startdate').value);
+    });
+};
 export { postData, updateUI, getSomeDate, modifyCurDate, getOffset, returndatelimiter, isGreaterEqual }
