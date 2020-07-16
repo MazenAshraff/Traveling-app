@@ -1,4 +1,8 @@
-import { postData, test, getSomeDate, modifyCurDate, getOffset } from './js/app.js'
+import { postData, updateUI, getSomeDate, modifyCurDate, getOffset, returndatelimiter, isGreaterEqual } from './js/app.js';
+import './styles/styles.scss';
+import './styles/form.scss';
+import './styles/background.scss';
+import './styles/output.scss'
 document.getElementById('submit').addEventListener('click', test);
 const restrictDates = () => {
     const dateElem = document.getElementById('startdate');
@@ -7,4 +11,4 @@ const restrictDates = () => {
 };
 restrictDates();
 
-export { postData, test, getSomeDate, modifyCurDate, getOffset }
+export { postData, updateUI, getSomeDate, modifyCurDate, getOffset, returndatelimiter }
