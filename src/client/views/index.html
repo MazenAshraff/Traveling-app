@@ -2,24 +2,77 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <title>My Travelling Journal</title>
+    <script src="https://kit.fontawesome.com/219137f5f3.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="area">
     <header>
-        <div>
+        <div class="title">
             <h1>My Travelling Journal</h1>
+            <i class='fas fa-globe-americas'></i>
         </div>
     </header>
-    <form>
-        <label for="location">Location:</label>
-        <input type="text" id="location" placeholder="Where do you plan to go?">
-        <label for="startdate">Start Date:</label>
-        <input type="date" id="startdate">
-        <button type="button" id="submit">submit</button>
+    <div class="formdiv">
+        <form>
 
-    </form>
+            <span id="input1">
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="Where do you plan to go?">
+            </span>
+
+            <span id="input2">
+                <label for="startdate" id="startlabel">Departure Date:</label>
+                <input type="date" id="startdate">
+            </span>
+            <span id="input3">
+                <label for="returndate" id="endlabel">Return Date:</label>
+                <input type="date" id="returndate">
+            </span>
+            <span id="input4">
+                <label for="notes">Notes:</label>
+                <textarea id="notes" placeholder="Anything you want us to remind you?"></textarea>
+            </span>
+            <span id="submit">submit</span>
+        </form>
+    </div>
+
+    <div id="container" style="opacity:0%">
+        <span id="imgcontainer">
+            <img src="" id="popularimage" />
+        </span>
+        <p id="recievedlocation"></p>
+        <p id="departure"></p>
+        <p id="return"></p>
+        <p id="duration"></p>
+        <p id="hightemp"></p>
+        <p id="lowtemp"></p>
+        <p id="chanceofrain"></p>
+        <div id="recievednotes">
+            <span id="recievednoteslabel">
+            <i class='far fa-edit' style='font-size:1.5em;color:#0'></i>
+            <span>Notes</span>
+            </span>
+            <textarea id="thetext"></textarea>
+        </div>
+
+    </div>
+    <footer>Stay Udacious!</footer>
+    <ul class=" circles ">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
 </body>
-<footer>Stay Udacious!</footer>
 
 </html>
