@@ -12,20 +12,25 @@ const postData = async(url, data) => {
 let days = { 1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 30, 9: 30, 10: 31, 11: 30, 12: 31 };
 const getSomeDate = (offset) => { // a function to get a future or past date based on an offset of days
     const curDate = modifyCurDate().split('-');
+    curDate[0] = parseInt(curDate[0]);
+    curDate[1] = parseInt(curDate[1]);
+    curDate[2] = parseInt(curDate[2]);
+
     let someDate = [0, 0, 0];
     if (curDate[0] % 4 == 0)
         days[2] = 29; // This is a leap year, februaries have 29 days instead of 28
     else
         days[2] = 28;
-    if (curDate[2] + offset > days[curDate[2]]) { // the offset exceeded the number of days in that month
-        someDate[2] = parseInt(curDate[2]) + offset - days[curDate[2]];
-        someDate[1] = (parseInt(curDate[1]) + 1 == 13) ? 1 : parseInt(curDate[1]) + 1;
-        if (someDate[1] == 1) // the month became january
+    if (curDate[2] + offset > days[curDate[1]]) { // the offset exceeded the number of days in that month
+        someDate[2] = curDate[2] + offset - days[curDate[1]];
+        someDate[1] = (curDate[1] + 1 == 13) ? 1 : curDate[1] + 1;
+        someDate[0] = curDate[0];
+        if (someDate[1] == 1) // the month became january   
             someDate[0] = curDate[0]++;
     } else {
         someDate = curDate;
-        someDate[2] = parseInt(someDate[2]) + offset;
-        someDate[1] = parseInt(someDate[1]);
+        someDate[2] = someDate[2] + offset;
+        someDate[1] = someDate[1];
     }
     someDate[1] = someDate[1] < 10 ? `0${someDate[1]}` : someDate[1];
     someDate[2] = someDate[2] < 10 ? `0${someDate[2]}` : someDate[2];
@@ -50,13 +55,13 @@ const getOffset = () => { //map the dates to numbers
 const isValid = (date) => { //check whether the entered departure date will be accepted by the API
     if (date === '') return false;
     const dateArray = date.split('-');
-    const cur_date = modifyCurDate().split('-');
+    const cur_date = modifyCurDate();
     const max_date = getSomeDate(15).split('-');
-    for (let i = 0; i < 3; i++) {
-        if (parseInt(dateArray[i]) > parseInt(max_date[i]) || parseInt(dateArray[i]) < parseInt(cur_date[i]))
-            return false;
-    }
-    return true;
+    if (duration(date, max_date) < -0)
+        return false;
+    if (isGreaterEqual(date, cur_date))
+        return true;
+    return false;
 }
 const isGreaterEqual = (returnDate, startDate) => { //check whether the return date is after the start date  
     if (returnDate === '') return false;
@@ -65,8 +70,9 @@ const isGreaterEqual = (returnDate, startDate) => { //check whether the return d
     for (let i = 0; i < 3; i++) {
         if (parseInt(retArr[i]) > parseInt(startArr[i]))
             return true;
-        else if (parseInt(retArr[i]) < parseInt(startArr[i]))
+        else if (parseInt(retArr[i]) < parseInt(startArr[i])) {
             return false;
+        }
     }
     return true;
 }
@@ -74,7 +80,7 @@ const isGreaterEqual = (returnDate, startDate) => { //check whether the return d
 const duration = (startDate, endDate) => { //get the nummber of days between 2 dates
     const date1 = new Date(startDate);
     const date2 = new Date(endDate);
-    return Math.floor((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
+    return Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
 
 }
 
@@ -103,7 +109,6 @@ const updateUI = async() => { //updating the UI using information retrieved from
         endlabel.setAttribute('style', '');
     }
     const offset = getOffset();
-    console.log(offset[departureDate]);
     const serverData = (await (await postData('http://localhost:8000/location', { location: `${locValue}`, date: offset[departureDate] })).json());
     document.getElementById('recievedlocation').innerHTML = `<i class="fas fa-map-marked-alt" style="font-size:1.5em;color:#0CCA4A;"></i>Location: ${locValue}`
     document.getElementById('hightemp').innerHTML = `<i class="fas fa-temperature-high" style="font-size:1.5em;color:#D90368";></i>High Tempreature on Arrival Date: ${serverData.high_temp}°C`;
