@@ -34,7 +34,7 @@
                 <label for="notes">Notes:</label>
                 <textarea id="notes" placeholder="Anything you want us to remind you?"></textarea>
             </span>
-            <span id="submit">submit</span>
+            <span id="submit" class="submit">submit</span>
         </form>
     </div>
 
@@ -51,12 +51,12 @@
         <p id="chanceofrain"></p>
         <div id="recievednotes">
             <span id="recievednoteslabel">
-            <i class='far fa-edit' style='font-size:1.5em;color:#0'></i>
+            <i class='far fa-edit' style='font-size:1.5em;color:#000;'></i>
             <span>Notes</span>
             </span>
             <textarea id="thetext"></textarea>
         </div>
-
+        <span id="save" class="submit">Save</span>
     </div>
     <footer>Stay Udacious!</footer>
     <ul class=" circles ">
@@ -74,12 +74,12 @@
 
 
 </body>
-<script>
+<!-- <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js');
         });
     }
-</script>
+</script> -->
 
 </html>
